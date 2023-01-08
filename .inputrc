@@ -1,0 +1,12 @@
+# 補完時に大文字小文字を無視
+set completion-ignore-case on
+# ファイルタイプをカラフルに
+set colored-stats on
+# 補完の接頭辞をカラフルに
+#set colored-completion-prefix on
+# 実行ファイルに印を付ける
+#set visible-stats on
+
+#set editing-mode vi
+"\e[A":history-search-backward  # arrow up
+"\e[B":history-search-forward  # arrow down
