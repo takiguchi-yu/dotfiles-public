@@ -1,3 +1,8 @@
+-- VSCode の場合
+if vim.g.vscode then
+  return
+end
+
 -- vim.loaderが存在する場合
 if vim.loader then
 	-- vim.loaderを有効にする
