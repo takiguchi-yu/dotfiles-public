@@ -20,6 +20,8 @@ alias ll "ls -l"
 alias lla "ll -A"
 alias g git
 
-### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
-set --export --prepend PATH "/Users/takiguchi-yu/.rd/bin"
-### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
+# GO ENV
+set -x PATH $PATH $HOME/go/bin
+
+# asdf
+source ~/.asdf/asdf.fish
