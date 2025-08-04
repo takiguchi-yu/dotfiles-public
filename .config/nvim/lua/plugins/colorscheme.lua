@@ -1,7 +1,7 @@
 return {
 	{
-		-- プラグイン "craftzdog/solarized-osaka.nvim" を指定
-		"craftzdog/solarized-osaka.nvim",
+		-- プラグイン "ellisonleao/gruvbox.nvim" を指定
+		"ellisonleao/gruvbox.nvim",
 		-- プラグインを遅延読み込みする設定
 		lazy = true,
 		-- プラグインの読み込み優先度を設定
@@ -10,7 +10,7 @@ return {
 		opts = function()
 			return {
 				-- 透明背景を有効にするオプション
-				transparent = true,
+				transparent_mode = true,
 			}
 		end,
 	},
