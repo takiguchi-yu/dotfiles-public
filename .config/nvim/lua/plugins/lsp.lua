@@ -1,7 +1,7 @@
 return {
 	-- ツールの設定
 	{
-		"williamboman/mason.nvim", -- mason.nvimプラグインの指定
+		"mason-org/mason.nvim", -- mason.nvimプラグインの指定
 		opts = function(_, opts)
 			-- ensure_installedリストにツールを追加
 			vim.list_extend(opts.ensure_installed, {
@@ -16,7 +16,6 @@ return {
 			})
 		end,
 	},
-
 	-- LSPサーバーの設定
 	{
 		"neovim/nvim-lspconfig", -- nvim-lspconfigプラグインの指定

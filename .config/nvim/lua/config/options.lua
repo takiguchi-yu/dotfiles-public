@@ -36,9 +36,9 @@ vim.opt.splitright = true -- 新しいウィンドウを現在のウィンドウ
 vim.opt.splitkeep = "cursor" -- 分割後もカーソル位置を保持
 vim.opt.mouse = "" -- マウスを無効にする
 
--- アンダーカールを設定
-vim.cmd([[let &t_Cs = "\e[4:3m"]])
-vim.cmd([[let &t_Ce = "\e[4:0m"]])
+-- アンダーカールを設定（日本語の波線問題のため一時的にコメントアウト）
+-- vim.cmd([[let &t_Cs = "\e[4:3m"]])
+-- vim.cmd([[let &t_Ce = "\e[4:0m"]])
 
 -- ブロックコメントにアスタリスクを追加
 vim.opt.formatoptions:append({ "r" })
