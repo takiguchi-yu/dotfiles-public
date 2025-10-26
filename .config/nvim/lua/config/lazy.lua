@@ -1,81 +1,48 @@
--- lazy.nvimのパスを設定
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-print(lazypath)
-
--- lazy.nvimが存在しない場合、リポジトリをクローン
-if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- 最新の安定版リリース
-    lazypath,
-  })
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+  if vim.v.shell_error ~= 0 then
+    vim.api.nvim_echo({
+      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+      { out, "WarningMsg" },
+      { "\nPress any key to exit..." },
+    }, true, {})
+    vim.fn.getchar()
+    os.exit(1)
+  end
 end
-
--- ランタイムパスにlazy.nvimを追加
 vim.opt.rtp:prepend(lazypath)
 
--- lazy.nvimの設定を読み込む
 require("lazy").setup({
   spec = {
-    -- LazyVimとそのプラグインを追加
-    {
-      "LazyVim/LazyVim",
-      import = "lazyvim.plugins",
-      opts = {
-        colorscheme = "gruvbox", -- カラースキームを設定
-        news = {
-          lazyvim = true, -- LazyVimのニュースを表示
-          neovim = true, -- Neovimのニュースを表示
-        },
-      },
-    },
-    -- 追加のモジュールをインポート
-    { import = "lazyvim.plugins.extras.linting.eslint" },
-    { import = "lazyvim.plugins.extras.formatting.prettier" },
-    { import = "lazyvim.plugins.extras.lang.typescript" },
-    { import = "lazyvim.plugins.extras.lang.json" },
-    { import = "lazyvim.plugins.extras.lang.markdown" },
-    { import = "lazyvim.plugins.extras.lang.rust" },
-    { import = "lazyvim.plugins.extras.lang.tailwind" },
-    --     { import = "lazyvim.plugins.extras.coding.copilot" },
-    { import = "lazyvim.plugins.extras.dap.core" },
-    { import = "lazyvim.plugins.extras.vscode" },
-    { import = "lazyvim.plugins.extras.util.mini-hipatterns" },
-    { import = "lazyvim.plugins.extras.test.core" },
-    { import = "lazyvim.plugins.extras.coding.yanky" },
-    { import = "lazyvim.plugins.extras.editor.mini-files" },
-    { import = "lazyvim.plugins.extras.util.project" },
-    { import = "lazyvim.plugins.extras.vscode" },
+    -- add LazyVim and import its plugins
+    { "LazyVim/LazyVim", import = "lazyvim.plugins" },
+    -- import/override with your plugins
     { import = "plugins" },
   },
   defaults = {
-    -- デフォルトでは、LazyVimプラグインのみが遅延読み込みされる。カスタムプラグインは起動時に読み込まれる。
-    -- すべてのカスタムプラグインをデフォルトで遅延読み込みしたい場合は、これを`true`に設定
+    -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.
+    -- If you know what you're doing, you can set this to `true` to have all your custom plugins lazy-loaded by default.
     lazy = false,
-    -- バージョン管理は現時点では無効にすることを推奨。多くのプラグインが古いリリースを持っており、Neovimのインストールを壊す可能性があるため。
-    version = false, -- 常に最新のgitコミットを使用
-    -- version = "*", -- セマンティックバージョニングをサポートするプラグインの最新安定版をインストール
+    -- It's recommended to leave version=false for now, since a lot the plugin that support versioning,
+    -- have outdated releases, which may break your Neovim install.
+    version = false, -- always use the latest git commit
+    -- version = "*", -- try installing the latest stable version for plugins that support semver
   },
-  dev = {
-    path = "~/.ghq/github.com", -- 開発用のパスを設定
-  },
-  checker = { enabled = true }, -- プラグインの更新を自動的にチェック
+  install = { colorscheme = { "tokyonight", "habamax" } },
+  checker = {
+    enabled = true, -- check for plugin updates periodically
+    notify = false, -- notify on update
+  }, -- automatically check for plugin updates
   performance = {
-    cache = {
-      enabled = true, -- キャッシュを有効化
-      -- disable_events = {},
-    },
     rtp = {
-      -- 一部のランタイムパスプラグインを無効化
+      -- disable some rtp plugins
       disabled_plugins = {
         "gzip",
-        "matchit",
-        "matchparen",
-        "netrwPlugin",
-        "rplugin",
+        -- "matchit",
+        -- "matchparen",
+        -- "netrwPlugin",
         "tarPlugin",
         "tohtml",
         "tutor",
@@ -83,12 +50,4 @@ require("lazy").setup({
       },
     },
   },
-  ui = {
-    custom_keys = {
-      ["<localleader>d"] = function(plugin)
-        dd(plugin) -- カスタムキーの設定
-      end,
-    },
-  },
-  debug = false, -- デバッグモードを無効化
 })

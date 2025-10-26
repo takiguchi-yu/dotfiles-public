@@ -19,10 +19,10 @@ keymap("v", "<", "<gv", opts) -- ビジュアルモードでインデントを�
 keymap("v", ">", ">gv", opts) -- ビジュアルモードでインデントを右に移動
 
 -- move text up and down
-keymap("v", "J", ":m .+1<CR>==", opts) -- ビジュアルモードで選択したテキストを1行下に移動
-keymap("v", "K", ":m .-2<CR>==", opts) -- ビジュアルモードで選択したテキストを1行上に移動
-keymap("x", "J", ":move '>+1<CR>gv-gv", opts) -- ビジュアルラインモードで選択したテキストを1行下に移動
-keymap("x", "K", ":move '<-2<CR>gv-gv", opts) -- ビジュアルラインモードで選択したテキストを1行上に移動
+-- keymap("v", "J", ":m .+1<CR>==", opts) -- ビジュアルモードで選択したテキストを1行下に移動
+-- keymap("v", "K", ":m .-2<CR>==", opts) -- ビジュアルモードで選択したテキストを1行上に移動
+-- keymap("x", "J", ":move '>+1<CR>gv-gv", opts) -- ビジュアルラインモードで選択したテキストを1行下に移動
+-- keymap("x", "K", ":move '<-2<CR>gv-gv", opts) -- ビジュアルラインモードで選択したテキストを1行上に移動
 
 -- paste preserves primal yanked piece
 keymap("v", "p", '"_dP', opts) -- ビジュアルモードでペーストしてもヤンクした内容を保持

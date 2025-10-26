@@ -1,18 +1,19 @@
--- Autocmd は VeryLazy イベントで自動的にロードされます
--- 常に設定されるデフォルトの autocmd: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
--- 追加の autocmd をここに追加します
+-- Autocmds are automatically loaded on the VeryLazy event
+-- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
+--
+-- Add any additional autocmds here
+-- with `vim.api.nvim_create_autocmd`
+--
+-- Or remove existing autocmds by their group name (which is prefixed with `lazyvim_` for the defaults)
+-- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
 
--- 挿入モードを終了するときにペーストモードをオフにする
-vim.api.nvim_create_autocmd("InsertLeave", {
-	pattern = "*", -- すべてのファイルタイプに対して適用
-	command = "set nopaste", -- ペーストモードをオフにするコマンド
-})
+-- LazyVimのMarkdownスペルチェックを無効化
+vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
 
--- 特定のファイル形式でコンシールを無効にする
--- LazyVimのデフォルトのconceallevelは3
+-- Markdownファイルでスペルチェックを無効にする
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = { "json", "jsonc", "markdown" }, -- 対象となるファイル形式
-	callback = function()
-		vim.opt.conceallevel = 0 -- conceallevelを0に設定してコンシールを無効にする
-	end,
+  pattern = { "markdown", "md" },
+  callback = function()
+    vim.opt_local.spell = false
+  end,
 })
