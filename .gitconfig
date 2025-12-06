@@ -28,3 +28,10 @@
 	ff = false
 [pull]
 	ff = only
+
+# git アカウントをディレクトリごとに自動切り替え
+[includeIf "gitdir:~/git/work/"]
+    path = .gitconfig-work
+
+[includeIf "gitdir:~/git/private/"]
+    path = .gitconfig-private
