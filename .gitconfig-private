@@ -1,0 +1,5 @@
+[user]
+    email = private@gmail.com
+    name = takiguchi-yu
+[core]
+    sshCommand = "ssh -i ~/.ssh/id_rsa_private -F /dev/null"
