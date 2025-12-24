@@ -2,4 +2,4 @@
     email = work@company.co.jp
     name = takiguchi-yu
 [core]
-    sshCommand = "ssh -i ~/.ssh/id_rsa_work -F /dev/null"
+    sshCommand = "ssh -i ~/.ssh/id_rsa_work -o IdentitiesOnly=yes -F /dev/null"
