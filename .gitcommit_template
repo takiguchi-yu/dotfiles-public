@@ -11,3 +11,4 @@
 # refactor :recycle: リファクタリング
 # test :green_heart: テストコードの追加や修正
 # chore :building_construction: ビルドツールの導入や依存関係を更新など
+# perf: :zap: パフォーマンス改善
