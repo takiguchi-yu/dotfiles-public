@@ -1,37 +1,60 @@
 [core]
 	excludesfile = ~/.gitignore_global
 	quotepath = false
-	hooksPath = ~/githooks
 [color]
 	status = auto
 
-[user]
-	name = 名前
-	email = メアド
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
 [commit]
 	template = ~/.gitcommit_template
 [push]
 	default = nothing
 [alias]
-	st = status
+	st = status --short
 	br = branch
 	co = checkout
 	cm = commit
+  sw = switch
 	fp = fetch --prune
 	lo = log --oneline
 	lg = log --pretty=format:'%C(red)%h %C(reset)(%cd) %C(green)%an %Creset%s %C(yellow)%d%Creset' --graph --date=relative --name-status
 	la = log --pretty=format:'%Cgreen%h %Creset%cd %Cblue[%cn] %Creset%s%C(yellow)%d%C(reset)' --graph --date=relative --decorate --all
 	df = "!git la | peco | awk '{print $2}' | xargs -I {} git diff {}^ {}"
+  wl = worktree list
+  wa = worktree add --checkout
+  wr = worktree remove
+  wp = worktree prune
 [grep]
 	lineNumber = true
 [merge]
 	ff = false
 [pull]
 	ff = only
+[secrets]
+	providers = git secrets --aws-provider
+	patterns = (A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}
+	patterns = (\"|')?(AWS|aws|Aws)?_?(SECRET|secret|Secret)?_?(ACCESS|access|Access)?_?(KEY|key|Key)(\"|')?\\s*(:|=>|=)\\s*(\"|')?[A-Za-z0-9/\\+=]{40}(\"|')?
+	patterns = (\"|')?(AWS|aws|Aws)?_?(ACCOUNT|account|Account)_?(ID|id|Id)?(\"|')?\\s*(:|=>|=)\\s*(\"|')?[0-9]{4}\\-?[0-9]{4}\\-?[0-9]{4}(\"|')?
+	allowed = AKIAIOSFODNN7EXAMPLE
+  allowed = wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+  allowed = default
+  # 環境固有の除外値はローカル設定の gitconfig に書く
 
-# git アカウントをディレクトリごとに自動切り替え
+# git のユーザーは秘匿値なので、ローカル設定（setup.sh が作る）から読み込む。
+# 既定は gitconfig、~/git/work/ と ~/git/private/ の配下は下の includeIf で上書きする。
+[include]
+	path = ~/.config/dotfiles/local/gitconfig
 [includeIf "gitdir:~/git/work/"]
-    path = .gitconfig-work
-
+	path = ~/.config/dotfiles/local/gitconfig-work
 [includeIf "gitdir:~/git/private/"]
-    path = .gitconfig-private
+	path = ~/.config/dotfiles/local/gitconfig-private
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
