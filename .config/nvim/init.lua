@@ -3,7 +3,6 @@ if vim.g.vscode then
   -- return
 end
 
-
 if vim.loader then
   vim.loader.enable()
 end

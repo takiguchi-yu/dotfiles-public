@@ -5,10 +5,12 @@
 # 例) feat :sparkles: #777 ログイン機能を実装
 
 # ==== Prefix Emoji ====
-# feat :sparkles: 機能の追加や変更
-# docs :memo: ドキュメントの更新
-# fix :bug: バグ修正
-# refactor :recycle: リファクタリング
-# test :green_heart: テストコードの追加や修正
-# chore :building_construction: ビルドツールの導入や依存関係を更新など
+# feat: :sparkles: 機能の追加や変更
+# docs: :memo: ドキュメントの更新
+# fix: :bug: バグ修正
+# refactor: :recycle: リファクタリング
+# style: :art: スタイル修正
+# test: :green_heart: テストコードの追加や修正
+# chore: :building_construction: ビルドツールの導入や依存関係を更新など
 # perf: :zap: パフォーマンス改善
+
