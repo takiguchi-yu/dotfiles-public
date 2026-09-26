@@ -1,8 +1,13 @@
-{ config, pkgs, ... }:
+{
+  pkgs,
+  username,
+  homeDirectory,
+  ...
+}:
 
 {
-  home.username = "takiguchi-yu";
-  home.homeDirectory = "/Users/takiguchi-yu";
+  home.username = username;
+  home.homeDirectory = homeDirectory;
   home.stateVersion = "25.11";
   
   home.packages = with pkgs; [
@@ -18,6 +23,8 @@
     colima
     python3
     pipx
+    jq
+    gitleaks
   ];
 
   # シェルに依存しない PATH の追加
@@ -47,10 +54,10 @@
       lla = "ll -A";
       g = "git";
       hm = "home-manager";
-      hms = "home-manager switch";
+      hms = "home-manager switch --impure";
       nixu = "cd ~/.config/home-manager/ && nix flake update && cd -";
-      claude = "headroom wrap claude";
-      copilot = "headroom wrap copilot";
+      # claude = "headroom wrap claude";
+      # copilot = "headroom wrap copilot";
     };
 
     # ASDFの設定とCopilot用関数の直接定義

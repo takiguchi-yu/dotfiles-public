@@ -1,0 +1,7 @@
+.serena
+.scratch
+.DS_Store
+__pycache__/
+
+# リンク先のツールが作る実行時データ
+.config/karabiner/automatic_backups/

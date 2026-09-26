@@ -1,0 +1,13 @@
+# Option(alt)キーをmacOSの文字合成ではなくAlt修飾キーとして扱う
+# herdrのctrl+alt+系ショートカットが正しく届くようにするための設定
+macos-option-as-alt = true
+
+# テーマ
+#theme = Sakura
+#theme = Moonfly
+theme = GitHub Dark 
+
+# 日本語対応フォント(Monaspace系 + IBM Plex Sans JPの合成フォント)
+font-family = "Moralerspace Neon"
+font-size = 14
+

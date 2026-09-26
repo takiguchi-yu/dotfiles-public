@@ -1,0 +1,66 @@
+# ホームとリポジトリの対応表。setup.sh / import.sh / links.nix がこのファイルだけを読む。
+#
+#   link    <ホームのパス> [<リポジトリのパス>]  ファイルかディレクトリをそのままリンクする
+#   each    <ディレクトリ>                       直下の項目を 1 件ずつリンクする
+#   compose <ホームのパス> <ローカル設定名>      公開分とローカル設定を合成して生成する（リンクしない）
+#   ignore  <ホームのパス（glob）>                取り込みの対象にしない
+#
+# パスはすべてホーム起点。<リポジトリのパス> を省くと同じパスを使う。
+
+# git
+link    .gitconfig
+link    .gitignore_global
+link    .gitcommit_template
+
+# シェル・エディタ・端末
+link    .inputrc
+each    .config/fish/functions
+each    .config/fish/completions
+each    .config/fish/conf.d
+link    .config/nvim
+link    .config/karabiner
+link    .config/ghostty/config
+link    .config/herdr/config.toml
+
+# Claude Code（主プロファイル）
+link    .claude/CLAUDE.md
+link    .claude/ASKING.md
+link    .claude/AWS.md
+link    .claude/DECIDE.md
+link    .claude/DESIGN.md
+link    .claude/EVIDENCE.md
+link    .claude/ISSUE.md
+link    .claude/PRACTICE.md
+link    .claude/PREP.md
+link    .claude/RTK.md
+link    .claude/statusline-command.sh
+# 自作スキルとそのエージェントは別リポジトリ claude-skills の install.sh がリンクする
+each    .claude/hooks
+compose .claude/settings.json          claude-settings.json
+
+# Claude Code（個人プロファイル）: ルール文書だけを主プロファイルと共有する
+link    .claude-personal/CLAUDE.md               .claude/CLAUDE.md
+link    .claude-personal/ASKING.md               .claude/ASKING.md
+link    .claude-personal/AWS.md                  .claude/AWS.md
+link    .claude-personal/DECIDE.md               .claude/DECIDE.md
+link    .claude-personal/DESIGN.md               .claude/DESIGN.md
+link    .claude-personal/EVIDENCE.md             .claude/EVIDENCE.md
+link    .claude-personal/ISSUE.md                .claude/ISSUE.md
+link    .claude-personal/PRACTICE.md             .claude/PRACTICE.md
+link    .claude-personal/PREP.md                 .claude/PREP.md
+link    .claude-personal/RTK.md                  .claude/RTK.md
+link    .claude-personal/statusline-command.sh   .claude/statusline-command.sh
+
+# 外部スキル: 本体は管理せず、一覧だけを持つ
+link    .agents/.skill-lock.json
+
+# GitHub Copilot CLI
+link    .copilot/settings.json
+link    .copilot/copilot-instructions.md
+compose .copilot/mcp-config.json       copilot-mcp-config.json
+
+# ツールが置くもの
+ignore  .config/fish/completions/docker.fish
+ignore  .config/fish/completions/kubectl.fish
+ignore  .config/fish/completions/orbctl.fish
+ignore  .config/fish/completions/gtr.fish

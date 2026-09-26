@@ -1,0 +1,38 @@
+onboarding = false
+[ui]
+agent_panel_sort = "spaces"
+
+[ui.sidebar.agents.rows_by_agent]
+claude = [["state_icon", "workspace", "tab"], ["terminal_title_stripped"], ["agent"]]
+
+[ui.toast]
+delivery = "system"
+delay_seconds = 1
+
+[keys]
+# prefixなしで直接実行できるショートカット
+# 【重要】この Mac は JIS 配列キーボード + ABC(US)レイアウト。
+# 文字入力は正しい([ -> 0x5b) が、Ctrl 併用時の制御コードは物理キー位置で決まるため 1 つずれる。
+# 実測値 (~/keycheck.py):
+#   キートップ「[」を Ctrl+Opt+ で押す -> 1b 1d = ctrl+alt+]
+#   キートップ「]」を Ctrl+Opt+ で押す -> 1b 1c = ctrl+alt+\
+# よって割当は実際に飛ぶキー名で書く。設定の見た目とキートップは意図的にずれている。
+# ctrl+alt+[ は使用禁止: 実バイトが 1b 1b で Esc の 2 回押しと同一。誤爆する。
+next_tab          = ["prefix+n", "prefix+]", 'ctrl+alt+\']  # 次のタブ(キートップ「]」)
+previous_tab      = ["prefix+p", "prefix+[", "ctrl+alt+]"]   # 前のタブ(キートップ「[」)
+next_agent        = "ctrl+alt+n"               # 次のエージェントへ移動
+close_tab         = ["prefix+shift+x", "ctrl+alt+w"] # 現在のタブを閉じる
+close_pane        = ["prefix+x", "ctrl+alt+x"]       # 現在のペインを閉じる
+split_horizontal  = ["prefix+minus", "ctrl+alt+s"]   # ペインを水平分割
+split_vertical    = ["prefix+v", "ctrl+alt+v"]       # ペインを垂直分割
+new_tab           = ["prefix+c", "ctrl+alt+t"]       # 新しいタブを作成
+rename_tab        = ["prefix+shift+t", "ctrl+alt+r"] # タブ名を変更
+focus_pane_left   = ["prefix+h", "ctrl+alt+left"]    # 左のペインへフォーカス移動
+focus_pane_right  = ["prefix+l", "ctrl+alt+right"]   # 右のペインへフォーカス移動
+focus_pane_up     = ["prefix+k", "ctrl+alt+up"]      # 上のペインへフォーカス移動
+focus_pane_down   = ["prefix+j", "ctrl+alt+down"]    # 下のペインへフォーカス移動
+
+[theme]
+name = "catppuccin"
+auto_switch = false
+
