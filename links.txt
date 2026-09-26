@@ -34,9 +34,8 @@ link    .claude/PRACTICE.md
 link    .claude/PREP.md
 link    .claude/RTK.md
 link    .claude/statusline-command.sh
-each    .claude/agents
+# 自作スキルとそのエージェントは別リポジトリ claude-skills の install.sh がリンクする
 each    .claude/hooks
-each    .claude/skills
 compose .claude/settings.json          claude-settings.json
 
 # Claude Code（個人プロファイル）: ルール文書だけを主プロファイルと共有する
@@ -60,12 +59,7 @@ link    .copilot/settings.json
 link    .copilot/copilot-instructions.md
 compose .copilot/mcp-config.json       copilot-mcp-config.json
 
-# 外部スキルとツールが置くもの・実行時データ
-ignore  .claude/skills/synced
-ignore  .claude/skills/archify
-ignore  .claude/skills/herdr
-ignore  .claude/skills/twg
-ignore  .claude/skills/twg-*
+# ツールが置くもの
 ignore  .config/fish/completions/docker.fish
 ignore  .config/fish/completions/kubectl.fish
 ignore  .config/fish/completions/orbctl.fish

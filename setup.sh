@@ -188,7 +188,18 @@ restore_external_skills() {
   done
 }
 
-# --- 6. このリポジトリの commit 前検査 ----------------------------------------
+# --- 6. 自作スキル -----------------------------------------------------------
+# 自作スキルとそのエージェントは別リポジトリ claude-skills にある。リンクはその install.sh が張る。
+CLAUDE_SKILLS_DIR="${CLAUDE_SKILLS_DIR:-$HOME/git/private/claude-skills}"
+install_claude_skills() {
+  if [ ! -d "$CLAUDE_SKILLS_DIR" ]; then
+    confirm "自作スキル（claude-skills）を $CLAUDE_SKILLS_DIR に clone しますか" || return 0
+    git clone https://github.com/takiguchi-yu/claude-skills.git "$CLAUDE_SKILLS_DIR"
+  fi
+  "$CLAUDE_SKILLS_DIR/install.sh"
+}
+
+# --- 7. このリポジトリの commit 前検査 ----------------------------------------
 install_git_hooks() {
   (cd "$DOTFILES_DIR" && lefthook install)
 }
@@ -202,6 +213,7 @@ main() {
   info "home-manager switch"
   home_manager_switch
   compose_all
+  install_claude_skills
   install_git_hooks
   if [ "$RESTORE_SKILLS" = 1 ] && confirm "外部スキルを .skill-lock.json から入れ直しますか"; then
     restore_external_skills

@@ -18,15 +18,16 @@ cd ~/git/private/dotfiles-public
 4. リンク先に実体があれば `~/.local/state/dotfiles/backup/<日時>/` に退避する
 5. `home-manager switch --impure` で、`links.txt` の設定をリポジトリへのリンクにする
 6. 合成ファイル（`settings.json` など）を、公開分とローカル設定から生成する
-7. このリポジトリの commit 前検査（lefthook + gitleaks）を有効にする
-8. 確認のうえ、外部スキルを `.agents/.skill-lock.json` から入れ直す
+7. 自作スキル [claude-skills](https://github.com/takiguchi-yu/claude-skills) を clone し（無ければ、確認のうえ）、その `install.sh` でリンクする
+8. このリポジトリの commit 前検査（lefthook + gitleaks）を有効にする
+9. 確認のうえ、外部スキルを `.agents/.skill-lock.json` から入れ直す（`--no-skills` で飛ばす）
 
 次は手動で行う。
 
 - twg / herdr の CLI を入れる（それぞれのスキルも一緒に入る）
 - 業務用の Claude Code 設定を `~/.config/dotfiles/local/claude-settings.json` に書き、`./setup.sh` を再実行する
 
-リポジトリを別の場所に置くときは、`DOTFILES_DIR` にそのパスを入れてから実行する。
+リポジトリを別の場所に置くときは、`DOTFILES_DIR`（claude-skills は `CLAUDE_SKILLS_DIR`）にそのパスを入れてから実行する。
 
 ## 構成
 
@@ -64,5 +65,6 @@ cd ~/git/private/dotfiles-public
 ## 日々の運用
 
 - 設定はホームで普通に編集してよい。リンクなので、そのままリポジトリの差分になる
-- 合成ファイル（`~/.claude/settings.json` など）をホームで変えたとき、`~/.claude/skills` などに新しく作ったとき、ツールがリンクを普通のファイルに置き換えたときは、`./import.sh` で取り込む。差分を 1 件ずつ見せて確認する
+- 合成ファイル（`~/.claude/settings.json` など）をホームで変えたとき、`~/.claude/hooks` などに新しく作ったとき、ツールがリンクを普通のファイルに置き換えたときは、`./import.sh` で取り込む。差分を 1 件ずつ見せて確認する
+- 自作スキルとそのエージェントは claude-skills で管理する（このリポジトリには置かない）
 - `links.txt` に行を足したら `home-manager switch --impure`（fish では `hms`）
