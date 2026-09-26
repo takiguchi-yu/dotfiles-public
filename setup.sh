@@ -4,14 +4,17 @@
 #   ./setup.sh                 ローカル設定が無いものだけ入力を求める
 #   ./setup.sh --reconfigure   ローカル設定を入力し直す
 #   ./setup.sh --yes           確認をすべて y で進める
+#   ./setup.sh --no-skills     外部スキルを入れ直さない
 # shellcheck disable=SC2088 # メッセージ中の ~ は表示用
 source "$(dirname "$0")/lib/dotfiles.sh"
 
 RECONFIGURE=0
+RESTORE_SKILLS=1
 for arg in "$@"; do
   case "$arg" in
     --reconfigure) RECONFIGURE=1 ;;
     --yes) ASSUME_YES=1 ;;
+    --no-skills) RESTORE_SKILLS=0 ;;
     *) die "不明な引数です: $arg" ;;
   esac
 done
@@ -135,18 +138,25 @@ write_local_config() {
 # --- 4. リンク ----------------------------------------------------------------
 # home-manager は既存の実体があると止まるので、先に退避する。
 # ホームで変更していた内容は、退避先に残る。取り込みたいときは ./import.sh を先に実行する。
+# 実体か、リポジトリ以外を指すリンクがあれば退避が要る。
+needs_evacuation() { # <ホームのパス> <リポジトリのパス>
+  [ -e "$HOME/$1" ] || [ -L "$HOME/$1" ] || return 1
+  ! links_to_repo "$1" "$2"
+}
+
 evacuate_conflicts() {
   local kind home repo child
   while IFS=$'\t' read -r kind home repo; do
     case "$kind" in
       link)
-        if [ -e "$HOME/$home" ] && [ ! -L "$HOME/$home" ]; then evacuate "$home"; fi
+        if needs_evacuation "$home" "$repo"; then evacuate "$home"; fi
         ;;
       each)
         for child in "$DOTFILES_DIR/$repo"/*; do
           [ -e "$child" ] || continue
-          child="$home/$(basename "$child")"
-          if [ -e "$HOME/$child" ] && [ ! -L "$HOME/$child" ]; then evacuate "$child"; fi
+          if needs_evacuation "$home/$(basename "$child")" "$repo/$(basename "$child")"; then
+            evacuate "$home/$(basename "$child")"
+          fi
         done
         ;;
     esac
@@ -193,7 +203,9 @@ main() {
   home_manager_switch
   compose_all
   install_git_hooks
-  if confirm "外部スキルを .skill-lock.json から入れ直しますか"; then restore_external_skills; fi
+  if [ "$RESTORE_SKILLS" = 1 ] && confirm "外部スキルを .skill-lock.json から入れ直しますか"; then
+    restore_external_skills
+  fi
   cat <<'EOF'
 
 セットアップが終わりました。次の手順は手動です。

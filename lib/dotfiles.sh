@@ -62,7 +62,7 @@ is_ignored() {
 links_to_repo() {
   local home="$HOME/$1" repo="$DOTFILES_DIR/$2"
   [ -L "$home" ] || return 1
-  [ "$(cd "$(dirname "$home")" && realpath "$(basename "$home")")" = "$(realpath "$repo")" ]
+  [ "$(cd "$(dirname "$home")" && realpath "$(basename "$home")" 2>/dev/null)" = "$(realpath "$repo")" ]
 }
 
 # ホームの実体をバックアップ先に退避する。
