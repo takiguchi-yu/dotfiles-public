@@ -136,6 +136,15 @@
             "timeout": 10
           }
         ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$HOME/.claude/hooks/prompt-timestamp.sh\"",
+            "timeout": 5
+          }
+        ]
       }
     ],
     "Stop": [
