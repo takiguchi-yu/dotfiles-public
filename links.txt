@@ -33,6 +33,7 @@ link    .claude/ISSUE.md
 link    .claude/PRACTICE.md
 link    .claude/PREP.md
 link    .claude/RTK.md
+link    .claude/SPEC.md
 link    .claude/statusline-command.sh
 # 自作スキルとそのエージェントは別リポジトリ claude-skills の install.sh がリンクする
 each    .claude/hooks
@@ -49,6 +50,7 @@ link    .claude-personal/ISSUE.md                .claude/ISSUE.md
 link    .claude-personal/PRACTICE.md             .claude/PRACTICE.md
 link    .claude-personal/PREP.md                 .claude/PREP.md
 link    .claude-personal/RTK.md                  .claude/RTK.md
+link    .claude-personal/SPEC.md                 .claude/SPEC.md
 link    .claude-personal/statusline-command.sh   .claude/statusline-command.sh
 
 # 外部スキル: 本体は管理せず、一覧だけを持つ

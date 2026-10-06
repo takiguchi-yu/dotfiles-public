@@ -6,6 +6,7 @@
 @EVIDENCE.md
 @PRACTICE.md
 @ISSUE.md
+@SPEC.md
 @DESIGN.md
 @AWS.md
 @RTK.md
