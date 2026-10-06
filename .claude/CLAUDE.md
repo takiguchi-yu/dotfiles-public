@@ -9,4 +9,5 @@
 @SPEC.md
 @DESIGN.md
 @AWS.md
+@COMMIT.md
 @RTK.md

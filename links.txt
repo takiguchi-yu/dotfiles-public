@@ -26,6 +26,7 @@ link    .config/herdr/config.toml
 link    .claude/CLAUDE.md
 link    .claude/ASKING.md
 link    .claude/AWS.md
+link    .claude/COMMIT.md
 link    .claude/DECIDE.md
 link    .claude/DESIGN.md
 link    .claude/EVIDENCE.md
@@ -43,6 +44,7 @@ compose .claude/settings.json          claude-settings.json
 link    .claude-personal/CLAUDE.md               .claude/CLAUDE.md
 link    .claude-personal/ASKING.md               .claude/ASKING.md
 link    .claude-personal/AWS.md                  .claude/AWS.md
+link    .claude-personal/COMMIT.md               .claude/COMMIT.md
 link    .claude-personal/DECIDE.md               .claude/DECIDE.md
 link    .claude-personal/DESIGN.md               .claude/DESIGN.md
 link    .claude-personal/EVIDENCE.md             .claude/EVIDENCE.md
