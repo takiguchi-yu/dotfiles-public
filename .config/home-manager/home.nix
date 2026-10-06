@@ -25,6 +25,7 @@
     pipx
     jq
     gitleaks
+    glow
   ];
 
   # シェルに依存しない PATH の追加
@@ -73,6 +74,7 @@
       hm = "home-manager";
       hms = "home-manager switch --impure";
       nixu = "cd ~/.config/home-manager/ && nix flake update && cd -";
+      glow = "glow -w $COLUMNS";
       # claude = "headroom wrap claude";
       # copilot = "headroom wrap copilot";
     };
