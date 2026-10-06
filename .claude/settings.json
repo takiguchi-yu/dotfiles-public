@@ -305,6 +305,7 @@
   "skipDangerousModePermissionPrompt": true,
   "theme": "dark",
   "showTurnDuration": true,
+  "timeFormat": "%Y-%m-%d %H:%M",
   "voiceEnabled": true,
   "defaultMode": "auto"
 }
