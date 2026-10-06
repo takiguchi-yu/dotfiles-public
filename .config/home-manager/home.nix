@@ -36,6 +36,22 @@
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
+    # AD 参加の Mac で AD がオフラインのとき、stdlib の
+    # `~$rel_path` がユーザー名検索で 60 秒止まるため、
+    # チルダを展開しない版で上書きする
+    stdlib = ''
+      user_rel_path() {
+        local abs_path=''${1#-}
+        if [[ -z $abs_path ]]; then return; fi
+        if [[ -n $HOME ]]; then
+          local rel_path=''${abs_path#"$HOME"}
+          if [[ $rel_path != "$abs_path" ]]; then
+            abs_path="~$rel_path"
+          fi
+        fi
+        echo "$abs_path"
+      }
+    '';
   };
 
   programs.java = {
