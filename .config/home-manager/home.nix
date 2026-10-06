@@ -69,6 +69,7 @@
       ll = "ls -l";
       lla = "ll -A";
       g = "git";
+      c = "clear";
       hm = "home-manager";
       hms = "home-manager switch --impure";
       nixu = "cd ~/.config/home-manager/ && nix flake update && cd -";
