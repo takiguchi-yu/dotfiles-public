@@ -39,6 +39,7 @@ link    .claude/SPEC.md
 link    .claude/statusline-command.sh
 # 自作スキルとそのエージェントは別リポジトリ claude-skills の install.sh がリンクする
 each    .claude/hooks
+each    .claude/themes
 compose .claude/settings.json          claude-settings.json
 
 # Claude Code（個人プロファイル）: ルール文書だけを主プロファイルと共有する

@@ -303,7 +303,7 @@
     "mode": "hold"
   },
   "skipDangerousModePermissionPrompt": true,
-  "theme": "dark",
+  "theme": "custom:vivid",
   "showTurnDuration": true,
   "timeFormat": "%Y-%m-%d %H:%M",
   "voiceEnabled": true,

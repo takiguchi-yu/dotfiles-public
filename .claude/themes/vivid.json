@@ -1,0 +1,31 @@
+{
+  "name": "Vivid",
+  "base": "dark",
+  "overrides": {
+    "claude": "#ff8a3d",
+    "claudeShimmer": "#ffb27a",
+    "success": "#3dd68c",
+    "error": "#ff5c6c",
+    "warning": "#ffd23f",
+    "warningShimmer": "#ffe27a",
+    "permission": "#7aa2ff",
+    "permissionShimmer": "#a9c1ff",
+    "promptBorder": "#b388ff",
+    "promptBorderShimmer": "#d1b8ff",
+    "suggestion": "#5eead4",
+    "remember": "#60a5fa",
+    "merged": "#a78bfa",
+    "planMode": "#2dd4bf",
+    "autoAccept": "#c084fc",
+    "bashBorder": "#ff4fa3",
+    "ide": "#38bdf8",
+    "fastMode": "#ff9e3d",
+    "diffAdded": "#14532d",
+    "diffRemoved": "#7f1d1d",
+    "diffAddedWord": "#16a34a",
+    "diffRemovedWord": "#dc2626",
+    "userMessageBackground": "#1f1a3d",
+    "briefLabelYou": "#5eead4",
+    "briefLabelClaude": "#ff8a3d"
+  }
+}
