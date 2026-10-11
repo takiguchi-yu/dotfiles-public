@@ -1,6 +1,7 @@
 # グローバル運用ルール
 
 @PREP.md
+@MARKDOWN.md
 @DECIDE.md
 @ASKING.md
 @EVIDENCE.md
