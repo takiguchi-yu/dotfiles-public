@@ -269,7 +269,12 @@
     "aws-core@agent-toolkit-for-aws": true,
     "gopls-lsp@claude-plugins-official": true,
     "eli5@claude-community": true,
-    "skill-creator@claude-plugins-official": true
+    "skill-creator@claude-plugins-official": true,
+    "context7@claude-plugins-official": true,
+    "cc-plugin-you-should-know@builtin": true,
+    "savvy-flow@claude-kit": true,
+    "savvy-progress@claude-kit": true,
+    "html-plan@claude-community": true
   },
   "extraKnownMarketplaces": {
     "agent-toolkit-for-aws": {
@@ -282,6 +287,12 @@
       "source": {
         "source": "github",
         "repo": "anthropics/claude-plugins-community"
+      }
+    },
+    "claude-kit": {
+      "source": {
+        "source": "github",
+        "repo": "johnnyvizz/claude-kit"
       }
     }
   },
@@ -296,16 +307,20 @@
     },
     "claude-opus-5-5": {
       "effortLevel": "high"
+    },
+    "claude-sonnet-5-5": {
+      "effortLevel": "high"
     }
   },
+  "advisorModel": "opus",
   "voice": {
     "enabled": true,
     "mode": "hold"
   },
+  "timeFormat": "%Y-%m-%d %H:%M",
   "skipDangerousModePermissionPrompt": true,
   "theme": "custom:vivid",
   "showTurnDuration": true,
-  "timeFormat": "%Y-%m-%d %H:%M",
   "voiceEnabled": true,
   "defaultMode": "auto"
 }
