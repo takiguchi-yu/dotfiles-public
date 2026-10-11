@@ -57,6 +57,7 @@ link    .claude-personal/PREP.md                 .claude/PREP.md
 link    .claude-personal/RTK.md                  .claude/RTK.md
 link    .claude-personal/SPEC.md                 .claude/SPEC.md
 link    .claude-personal/statusline-command.sh   .claude/statusline-command.sh
+link    .claude-personal/themes/vivid.json       .claude/themes/vivid.json
 
 # 外部スキル: 本体は管理せず、一覧だけを持つ
 link    .agents/.skill-lock.json
