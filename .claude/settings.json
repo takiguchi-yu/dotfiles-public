@@ -266,7 +266,6 @@
     "command": "bash ~/.claude/statusline-command.sh"
   },
   "enabledPlugins": {
-    "aws-core@agent-toolkit-for-aws": true,
     "gopls-lsp@claude-plugins-official": true,
     "eli5@claude-community": true,
     "skill-creator@claude-plugins-official": true,
