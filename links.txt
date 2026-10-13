@@ -21,6 +21,7 @@ link    .config/nvim
 link    .config/karabiner
 link    .config/ghostty/config
 link    .config/herdr/config.toml
+link    .local/bin/cfav
 
 # Claude Code（主プロファイル）
 link    .claude/CLAUDE.md

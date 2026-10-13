@@ -1,0 +1,101 @@
+#!/usr/bin/env bash
+# Claude Code のセッションを名前で登録し、一覧から番号で選んで再開する。
+# 使い方は usage()（`cfav help`）を参照。
+#
+# 登録先は実行時データ（セッション名が業務の名称になりうるのでリポジトリに入れない）。
+# CFAV_FILE で変えられる。
+set -euo pipefail
+
+store="${CFAV_FILE:-${XDG_DATA_HOME:-$HOME/.local/share}/cfav/favorites.tsv}"
+
+die() { echo "cfav: $*" >&2; exit 1; }
+
+usage() {
+  cat <<EOF
+Claude Code のセッションを名前で登録し、一覧から番号で選んで再開する。
+
+使い方:
+  cfav                選んで再開する（登録時のディレクトリで claude --resume <name>）
+  cfav add <name>     今のディレクトリで <name> を登録する（同名は上書き）
+  cfav rm <name>      登録を外す
+  cfav ls             登録を一覧する
+  cfav help           この説明を出す（-h / --help も同じ）
+
+登録先: ${store/#$HOME/~}
+  環境変数 CFAV_FILE で変えられる。
+EOF
+}
+
+# 登録先から <name> の行を除いて標準出力へ。ファイルが無ければ何も出さない。
+without() {
+  [[ -f $store ]] || return 0
+  awk -F'\t' -v n="$1" '$1 != n' "$store"
+}
+
+# 登録先を標準入力の内容で置き換える。
+save() {
+  mkdir -p "$(dirname "$store")"
+  local tmp
+  tmp="$(mktemp "$store.XXXXXX")"
+  cat >"$tmp"
+  mv "$tmp" "$store"
+}
+
+# 名前に使えない文字（タブ・改行）を弾く。空文字も弾く。
+check_name() {
+  [[ -n ${1:-} ]] || die "名前を指定してください"
+  [[ $1 != *$'\t'* && $1 != *$'\n'* ]] || die "名前にタブと改行は使えません"
+}
+
+cmd_add() {
+  check_name "${1:-}"
+  { without "$1"; printf '%s\t%s\n' "$1" "$PWD"; } | save
+  echo "登録した: $1 ($PWD)"
+}
+
+cmd_rm() {
+  check_name "${1:-}"
+  if [[ ! -f $store ]] || ! cut -f1 "$store" | grep -q -F -x -e "$1"; then
+    die "登録がありません: $1"
+  fi
+  without "$1" | save
+  echo "外した: $1"
+}
+
+cmd_ls() {
+  [[ -s $store ]] || die "登録がありません。cfav add <name> で登録できます"
+  local i=0 name dir
+  while IFS=$'\t' read -r name dir; do
+    i=$((i + 1))
+    printf '%2d  %s  (%s)\n' "$i" "$name" "${dir/#$HOME/~}"
+  done <"$store"
+}
+
+cmd_pick() {
+  cmd_ls
+  local -a names=() dirs=()
+  local name dir n
+  while IFS=$'\t' read -r name dir; do
+    names+=("$name")
+    dirs+=("$dir")
+  done <"$store"
+
+  read -r -p "番号: " n
+  if [[ ! $n =~ ^[0-9]+$ ]] || ((n < 1 || n > ${#names[@]})); then
+    die "選べない番号です: $n"
+  fi
+  name="${names[n - 1]}"
+  dir="${dirs[n - 1]}"
+  [[ -d $dir ]] || die "ディレクトリがありません: $dir"
+  cd "$dir"
+  exec claude --resume "$name"
+}
+
+case "${1:-}" in
+  "") cmd_pick ;;
+  add) shift; cmd_add "$@" ;;
+  rm) shift; cmd_rm "$@" ;;
+  ls) cmd_ls ;;
+  help | -h | --help) usage ;;
+  *) die "不明なサブコマンド: $1（cfav help で使い方を表示）" ;;
+esac
