@@ -2,6 +2,7 @@
 
 @PREP.md
 @MARKDOWN.md
+@DIAGRAM.md
 @DECIDE.md
 @ASKING.md
 @EVIDENCE.md

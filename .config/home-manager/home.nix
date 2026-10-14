@@ -26,6 +26,10 @@
     jq
     gitleaks
     glow
+  ]
+  # 公式バイナリを取り込むので、配布物を確かめた環境だけに入れる
+  ++ pkgs.lib.optionals (pkgs.stdenv.hostPlatform.system == "aarch64-darwin") [
+    (pkgs.callPackage ./pkgs/mermaid-ascii.nix { })
   ];
 
   # シェルに依存しない PATH の追加

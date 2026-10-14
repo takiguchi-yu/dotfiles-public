@@ -1,0 +1,45 @@
+#!/usr/bin/env python3
+# Mermaid を端末で読む罫線の図に変換する（claude-skills の diagram スキルが使う）。
+#   mmd2txt [file]   file を省くと標準入力から読む
+#
+# mermaid-ascii を決まった間隔の指定で呼び、横幅（日本語を 2 桁で数える）が MAX_WIDTH を超えたら
+# 標準エラーに警告する。
+#
+# 縦の矢印の先（▼）は箱の 1 行手前に置かれ、箱との間に少し隙間が空く。罫線の上に移す案
+# （▼ を辺に置く、三角形のブロック 🭭 に置き換える）は、どちらも箱に刺さって見えたので採らなかった。
+import subprocess
+import sys
+import unicodedata
+
+MAX_WIDTH = 100
+# -y は 4 より小さくしない。横向きの図に戻りの矢印があると、mermaid-ascii 1.6.1 は線を箱の文字に食い込ませる
+RENDER = ["mermaid-ascii", "-p", "0", "-y", "4", "-f", "-"]
+
+
+def display_width(line):
+    return sum(2 if unicodedata.east_asian_width(ch) in "WF" else 1 for ch in line)
+
+
+def main():
+    args = sys.argv[1:]
+    if len(args) > 1 or (args and args[0] in ("-h", "--help")):
+        print("usage: mmd2txt [file]", file=sys.stderr)
+        return 2
+    source = open(args[0]).read() if args else sys.stdin.read()
+
+    done = subprocess.run(RENDER, input=source, capture_output=True, text=True)
+    if done.returncode != 0:
+        sys.stderr.write(done.stderr)
+        return done.returncode
+
+    lines = done.stdout.splitlines()
+    print("\n".join(line.rstrip() for line in lines))
+
+    width = max((display_width(line) for line in lines), default=0)
+    if width > MAX_WIDTH:
+        print(f"mmd2txt: 横幅 {width} 桁（{MAX_WIDTH} 桁を超えている）", file=sys.stderr)
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

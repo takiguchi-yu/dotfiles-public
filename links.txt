@@ -22,6 +22,7 @@ link    .config/karabiner
 link    .config/ghostty/config
 link    .config/herdr/config.toml
 link    .local/bin/cfav
+link    .local/bin/mmd2txt
 
 # Claude Code（主プロファイル）
 link    .claude/CLAUDE.md
@@ -30,6 +31,7 @@ link    .claude/AWS.md
 link    .claude/COMMIT.md
 link    .claude/DECIDE.md
 link    .claude/DESIGN.md
+link    .claude/DIAGRAM.md
 link    .claude/EVIDENCE.md
 link    .claude/ISSUE.md
 link    .claude/MARKDOWN.md
@@ -50,6 +52,7 @@ link    .claude-personal/AWS.md                  .claude/AWS.md
 link    .claude-personal/COMMIT.md               .claude/COMMIT.md
 link    .claude-personal/DECIDE.md               .claude/DECIDE.md
 link    .claude-personal/DESIGN.md               .claude/DESIGN.md
+link    .claude-personal/DIAGRAM.md              .claude/DIAGRAM.md
 link    .claude-personal/EVIDENCE.md             .claude/EVIDENCE.md
 link    .claude-personal/ISSUE.md                .claude/ISSUE.md
 link    .claude-personal/MARKDOWN.md             .claude/MARKDOWN.md
