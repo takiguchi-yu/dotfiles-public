@@ -6,8 +6,12 @@ agent_panel_sort = "spaces"
 claude = [["state_icon", "workspace", "tab"], ["terminal_title_stripped"], ["agent"]]
 
 [ui.toast]
-delivery = "system"
+# delivery = "system"
+delivery = "off"
 delay_seconds = 1
+
+[ui.sound]
+enabled = false
 
 [keys]
 # prefixなしで直接実行できるショートカット
