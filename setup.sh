@@ -159,6 +159,12 @@ evacuate_conflicts() {
           fi
         done
         ;;
+      alias)
+        # 既に目的地を指していれば退避しない
+        [ -e "$HOME/$home" ] || [ -L "$HOME/$home" ] || continue
+        [ "$(readlink -f "$HOME/$home")" = "$(readlink -f "$HOME/$repo")" ] && continue
+        evacuate "$home"
+        ;;
     esac
   done < <(manifest)
 }

@@ -34,7 +34,7 @@ manifest() {
     case "$kind" in '' | '#'*) continue ;; esac
     case "$kind" in
       link | each | ignore) printf '%s\t%s\t%s\n' "$kind" "$a" "${b:-$a}" ;;
-      compose) printf '%s\t%s\t%s\n' "$kind" "$a" "$b" ;;
+      compose | alias) printf '%s\t%s\t%s\n' "$kind" "$a" "$b" ;;
       *) die "links.txt の種類が不明です: $kind" ;;
     esac
   done <"$LINKS_FILE"

@@ -1,4 +1,4 @@
-# links.txt の link / each を home.file に変換する。
+# links.txt の link / each / alias を home.file に変換する。
 # mkOutOfStoreSymlink でリポジトリの作業ツリーを直接指すので、ホームでの編集がそのままリポジトリに入る。
 {
   config,
@@ -33,9 +33,15 @@ let
     in
     lib.mapAttrs' (name: _: lib.nameValuePair "${dir}/${name}" { source = toRepo "${dir}/${name}"; }) children;
 
+  # alias <ホーム> <ホーム>: ホームの別の場所を指す
+  aliasEntry = e: {
+    ${builtins.elemAt e 1}.source =
+      config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/${builtins.elemAt e 2}";
+  };
+
   ofKind = kind: lib.filter (e: builtins.head e == kind) entries;
 in
 {
-  home.file = lib.mkMerge (map linkEntry (ofKind "link") ++ map eachEntry (ofKind "each"));
+  home.file = lib.mkMerge (map linkEntry (ofKind "link") ++ map eachEntry (ofKind "each") ++ map aliasEntry (ofKind "alias"));
   home.sessionVariables.DOTFILES_DIR = dotfilesDir;
 }

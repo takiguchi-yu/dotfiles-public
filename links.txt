@@ -3,6 +3,7 @@
 #   link    <ホームのパス> [<リポジトリのパス>]  ファイルかディレクトリをそのままリンクする
 #   each    <ディレクトリ>                       直下の項目を 1 件ずつリンクする
 #   compose <ホームのパス> <ローカル設定名>      公開分とローカル設定を合成して生成する（リンクしない）
+#   alias   <ホームのパス> <ホームのパス>        ホームの別の場所へリンクする（リポジトリの外のものを共有する）
 #   ignore  <ホームのパス（glob）>                取り込みの対象にしない
 #
 # パスはすべてホーム起点。<リポジトリのパス> を省くと同じパスを使う。
@@ -46,7 +47,7 @@ each    .claude/hooks
 each    .claude/themes
 compose .claude/settings.json          claude-settings.json
 
-# Claude Code（個人プロファイル）: ルール文書だけを主プロファイルと共有する
+# Claude Code（個人プロファイル）: ルール文書・ステータスライン・テーマ・エージェントを主プロファイルと共有する
 link    .claude-personal/CLAUDE.md               .claude/CLAUDE.md
 link    .claude-personal/ASKING.md               .claude/ASKING.md
 link    .claude-personal/AWS.md                  .claude/AWS.md
@@ -64,6 +65,8 @@ link    .claude-personal/RTK.md                  .claude/RTK.md
 link    .claude-personal/SPEC.md                 .claude/SPEC.md
 link    .claude-personal/statusline-command.sh   .claude/statusline-command.sh
 link    .claude-personal/themes/vivid.json       .claude/themes/vivid.json
+# エージェントは claude-skills の install.sh が主プロファイルに張るので、ディレクトリごと主プロファイルを指す
+alias   .claude-personal/agents                  .claude/agents
 
 # 外部スキル: 本体は管理せず、一覧だけを持つ
 link    .agents/.skill-lock.json
