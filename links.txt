@@ -37,6 +37,7 @@ link    .claude/ISSUE.md
 link    .claude/MARKDOWN.md
 link    .claude/PRACTICE.md
 link    .claude/PREP.md
+link    .claude/REVIEW.md
 link    .claude/RTK.md
 link    .claude/SPEC.md
 link    .claude/statusline-command.sh
@@ -58,6 +59,7 @@ link    .claude-personal/ISSUE.md                .claude/ISSUE.md
 link    .claude-personal/MARKDOWN.md             .claude/MARKDOWN.md
 link    .claude-personal/PRACTICE.md             .claude/PRACTICE.md
 link    .claude-personal/PREP.md                 .claude/PREP.md
+link    .claude-personal/REVIEW.md               .claude/REVIEW.md
 link    .claude-personal/RTK.md                  .claude/RTK.md
 link    .claude-personal/SPEC.md                 .claude/SPEC.md
 link    .claude-personal/statusline-command.sh   .claude/statusline-command.sh

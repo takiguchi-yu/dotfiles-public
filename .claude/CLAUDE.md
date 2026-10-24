@@ -10,6 +10,7 @@
 @ISSUE.md
 @SPEC.md
 @DESIGN.md
+@REVIEW.md
 @AWS.md
 @COMMIT.md
 @RTK.md
