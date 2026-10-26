@@ -118,16 +118,6 @@
       "installedAt": "2026-08-17T00:37:37.574Z",
       "updatedAt": "2026-10-08T04:57:33.216Z"
     },
-    "resolving-merge-conflicts": {
-      "source": "mattpocock/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/engineering/resolving-merge-conflicts/SKILL.md",
-      "skillFolderHash": "6aa1ed0b40fac0ebea5c0cf6f2addf82c99b6323",
-      "pluginName": "mattpocock-skills",
-      "installedAt": "2026-08-17T00:37:37.581Z",
-      "updatedAt": "2026-08-17T00:37:37.581Z"
-    },
     "setup-matt-pocock-skills": {
       "source": "mattpocock/skills",
       "sourceType": "github",
@@ -251,18 +241,18 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/microsoft/azure-skills.git",
       "skillPath": "skills/microsoft-foundry/SKILL.md",
-      "skillFolderHash": "fee43e7b6a76ea59d4e5831ffbf3b40a1e8caeb3",
+      "skillFolderHash": "2311f81bfa096aaefd50068b61443cb92ba70bfe",
       "installedAt": "2026-08-17T02:38:52.354Z",
-      "updatedAt": "2026-10-14T15:27:52.672Z"
+      "updatedAt": "2026-10-26T02:16:24.811Z"
     },
     "archify": {
       "source": "tt-a1i/archify",
       "sourceType": "github",
       "sourceUrl": "https://github.com/tt-a1i/archify.git",
       "skillPath": "archify/SKILL.md",
-      "skillFolderHash": "7e1de2b2cf3a9a91823ee5dcc2089c1d96a7e4f1",
+      "skillFolderHash": "d5fc699feb186e8be4e2d9e86f850a8ea1b6959e",
       "installedAt": "2026-08-31T02:08:37.048Z",
-      "updatedAt": "2026-10-14T15:26:22.419Z"
+      "updatedAt": "2026-10-26T02:16:38.163Z"
     },
     "no-ai-slop": {
       "source": "petergyang/no-ai-slop",
