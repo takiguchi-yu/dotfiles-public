@@ -2,6 +2,10 @@
 # herdrのctrl+alt+系ショートカットが正しく届くようにするための設定
 macos-option-as-alt = true
 
+# Cmd+Zで入力欄の取り消し(Ctrl+_ = 0x1f)をアプリに送る
+# 既定のsuper+z=undo(閉じたタブ・分割の復元)は上書きされるが、super+shift+t=undoは残る
+keybind = super+z=text:\x1f
+
 # テーマ
 #theme = Sakura
 #theme = Moonfly
