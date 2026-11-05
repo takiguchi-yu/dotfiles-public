@@ -20,7 +20,6 @@
     ollama
     docker
     docker-compose
-    colima
     python3
     pipx
     jq
@@ -35,7 +34,6 @@
   # シェルに依存しない PATH の追加
   home.sessionPath = [
     "$HOME/.local/bin"
-    "$HOME/.orbstack/bin"
   ];
 
   programs.direnv = {
@@ -57,6 +55,23 @@
         echo "$abs_path"
       }
     '';
+  };
+
+  # colima 本体もここで入る。ログインのたびに launchd が default の VM を起動する
+  # （Mac を再起動した日に Docker が止まったままにならないように）
+  # 止めるときは、先に launchd から外す（外さないと launchd が起動し直すことがある）:
+  #   launchctl bootout gui/$(id -u)/org.nix-community.home.colima-default && colima stop
+  # 自動起動に戻すときは、次のログインを待つか bootstrap する:
+  #   launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/org.nix-community.home.colima-default.plist
+  services.colima.enable = true;
+  # stateVersion を 26.05 以上にすると既定が変わる（~/.config/colima に移って既存の VM が見えなくなり、
+  # DOCKER_HOST も固定されて docker context の切り替えが効かなくなる）ので、今の挙動に固定する
+  services.colima.colimaHomeDir = ".colima";
+  # profiles を 1 キーでも書くとモジュールの既定（isActive・isService が true）が丸ごと置き換わるので、3 つとも書く
+  services.colima.profiles.default = {
+    isActive = true;
+    isService = true;
+    setDockerHost = false;
   };
 
   programs.java = {
