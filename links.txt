@@ -35,6 +35,7 @@ link    .claude/DECIDE.md
 link    .claude/DESIGN.md
 link    .claude/DIAGRAM.md
 link    .claude/EVIDENCE.md
+link    .claude/HWWWN.md
 link    .claude/ISSUE.md
 link    .claude/MARKDOWN.md
 link    .claude/PRACTICE.md
@@ -58,6 +59,7 @@ link    .claude-personal/DECIDE.md               .claude/DECIDE.md
 link    .claude-personal/DESIGN.md               .claude/DESIGN.md
 link    .claude-personal/DIAGRAM.md              .claude/DIAGRAM.md
 link    .claude-personal/EVIDENCE.md             .claude/EVIDENCE.md
+link    .claude-personal/HWWWN.md                .claude/HWWWN.md
 link    .claude-personal/ISSUE.md                .claude/ISSUE.md
 link    .claude-personal/MARKDOWN.md             .claude/MARKDOWN.md
 link    .claude-personal/PRACTICE.md             .claude/PRACTICE.md
