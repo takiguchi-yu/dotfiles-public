@@ -3,6 +3,7 @@
 @PREP.md
 @MARKDOWN.md
 @DIAGRAM.md
+@ARTIFACT.md
 @DECIDE.md
 @ASKING.md
 @EVIDENCE.md

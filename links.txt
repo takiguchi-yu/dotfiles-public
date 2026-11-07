@@ -27,6 +27,7 @@ link    .local/bin/mmd2txt
 
 # Claude Code（主プロファイル）
 link    .claude/CLAUDE.md
+link    .claude/ARTIFACT.md
 link    .claude/ASKING.md
 link    .claude/AWS.md
 link    .claude/COMMIT.md
@@ -49,6 +50,7 @@ compose .claude/settings.json          claude-settings.json
 
 # Claude Code（個人プロファイル）: ルール文書・ステータスライン・テーマ・エージェントを主プロファイルと共有する
 link    .claude-personal/CLAUDE.md               .claude/CLAUDE.md
+link    .claude-personal/ARTIFACT.md             .claude/ARTIFACT.md
 link    .claude-personal/ASKING.md               .claude/ASKING.md
 link    .claude-personal/AWS.md                  .claude/AWS.md
 link    .claude-personal/COMMIT.md               .claude/COMMIT.md
