@@ -9,7 +9,7 @@ keybind = super+z=text:\x1f
 # テーマ
 #theme = Sakura
 #theme = Moonfly
-theme = GitHub Dark 
+theme = GitHub Dark Default
 
 # 日本語対応フォント(Monaspace系 + IBM Plex Sans JPの合成フォント)
 font-family = "Moralerspace Neon"
