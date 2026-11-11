@@ -20,7 +20,8 @@ cd ~/git/private/dotfiles-public
 6. 合成ファイル（`settings.json` など）を、公開分とローカル設定から生成する
 7. 自作スキル [claude-skills](https://github.com/takiguchi-yu/claude-skills) を clone し（無ければ、確認のうえ）、その `install.sh` でリンクする
 8. このリポジトリの commit 前検査（lefthook + gitleaks）を有効にする
-9. 確認のうえ、外部スキルを `.agents/.skill-lock.json` から入れ直す（`--no-skills` で飛ばす）
+9. 確認のうえ、`Brewfile` のパッケージとアプリを `brew bundle` で入れる（Homebrew が無ければ飛ばす。先に [https://brew.sh](https://brew.sh) の .pkg で入れておく）
+10. 確認のうえ、外部スキルを `.agents/.skill-lock.json` から入れ直す（`--no-skills` で飛ばす）
 
 次は手動で行う。
 
@@ -35,6 +36,7 @@ cd ~/git/private/dotfiles-public
 | --- | --- |
 | `links.txt` | ホームとリポジトリの対応表。何をリンクし、何を合成し、何を取り込まないか |
 | `setup.sh` | セットアップ |
+| `Brewfile` | Homebrew で入れるもの（Nix で入るものと、MDM・App Store が配るアプリは書かない） |
 | `import.sh` | 取り込み（ホームにしかない設定をリポジトリに移す） |
 | `lib/dotfiles.sh` | 上の 2 つが共有する処理（対応表の読み込み、合成） |
 | `.config/home-manager/` | home-manager。`links.nix` が `links.txt` からリンクを作る |
@@ -68,3 +70,4 @@ cd ~/git/private/dotfiles-public
 - 合成ファイル（`~/.claude/settings.json` など）をホームで変えたとき、`~/.claude/hooks` などに新しく作ったとき、ツールがリンクを普通のファイルに置き換えたときは、`./import.sh` で取り込む。差分を 1 件ずつ見せて確認する
 - 自作スキルとそのエージェントは claude-skills で管理する（このリポジトリには置かない）
 - `links.txt` に行を足したら `home-manager switch --impure`（fish では `hms`）
+- Homebrew で入れたもの・やめたものは `Brewfile` に書く。書いたものだけが新しい PC に入る

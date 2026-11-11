@@ -210,6 +210,19 @@ install_git_hooks() {
   (cd "$DOTFILES_DIR" && lefthook install)
 }
 
+# --- 8. Homebrew --------------------------------------------------------------
+# Homebrew 本体は入れない。インストールに管理者権限が要り、.pkg 版なら
+# /etc/paths.d/homebrew も置かれて、どのシェルでも PATH が通るため、人が入れる。
+install_brew_packages() {
+  local brew=/opt/homebrew/bin/brew
+  if [ ! -x "$brew" ]; then
+    warn "Homebrew が無いので Brewfile を飛ばしました。https://brew.sh の .pkg で入れてから再実行してください"
+    return 0
+  fi
+  confirm "Brewfile のパッケージとアプリを入れますか" || return 0
+  "$brew" bundle --file "$DOTFILES_DIR/Brewfile" || warn "Brewfile の一部を入れられませんでした（上の出力を確認）"
+}
+
 main() {
   check_platform
   ensure_nix
@@ -221,6 +234,7 @@ main() {
   compose_all
   install_claude_skills
   install_git_hooks
+  install_brew_packages
   if [ "$RESTORE_SKILLS" = 1 ] && confirm "外部スキルを .skill-lock.json から入れ直しますか"; then
     restore_external_skills
   fi
