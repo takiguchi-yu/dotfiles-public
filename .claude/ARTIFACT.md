@@ -35,3 +35,28 @@ HTML を出力するときは**全幅**にする。全幅とは、ページの�
 - スキルの更新で効かなくなったら、`archify/explainer/reader.css` と `html-plan/runtime/htmlplan.css` を読み直して CSS を直す
 
 完了条件: 出力した HTML で、外枠の幅が画面幅から左右の余白を引いた値に等しく、`p` の `max-width` が `45em`。
+
+## HTML の見た目は Sumi Shu で組む
+
+HTML を出力するときは、自分用のデザインシステム **Sumi Shu**（https://claude.ai/artifact/AFvmwNNqyM6ZyxqbUKhRfq ）で組む。
+Artifact は誰かに説明するためのプレゼン資料として扱い、墨の文字と朱 1 色、罫線と余白だけで、整列・近接・反復・対比・余白・分割の 6 原則に沿って組む。グラデーション・カード・絵文字のような定番の装飾は、AI が作った見た目に見えるので使わない。
+`artifact-design` スキルや `frontend-design` スキルの見た目の指示（題材ごとに配色や書体を選ぶなど）より、この規定を優先する。
+
+### 出力ごとの当て方
+
+| 出力 | 当て方 |
+| --- | --- |
+| 自分で書く HTML（Artifact、ローカルの HTML、GitHub Issue の HTML artifact） | 書く前に Sumi Shu の `project/README.md` と `project/components/bundle.css` を Artifact ツールの `read`（`path` 指定）で読み、README の「使い方」のとおりに組む |
+| Slides 型・Design 型 | デザインシステムに Sumi Shu を使う（URL を渡す） |
+| `archify` の explainer | 下の `archify-explainer.css` を、幅の CSS と同じ場所に足す |
+| `archify` の図のページ | 下の `archify-diagram.css` を、テンプレートの `<style>` より後ろに足す。幅は上の規定どおり触らない |
+| `html-plan` | 下の `html-plan.css` を、幅の CSS と同じ場所に足す |
+
+第三者スキル用の CSS は、`~/git/private/dotfiles-public/.claude/artifact-theme/` にある。中身を `<style>` で貼り、ファイルの先頭の `@import` の行はその `<style>` の先頭に置く。寄せるのは色と書体だけで、レイアウトはスキルのままにする。
+archify の図を SVG・画像で書き出したものは対象外にする。書き出しの処理が独自の書体を埋め込むため、上書きが届かない。
+状態を表す色（archify の `--good` `--caution` `--bad`、html-plan の `--green` `--amber` `--red` など）は、図表の意味を壊さないよう上書きしない。
+スキルの更新で効かなくなったら、`archify/explainer/reader.css`、`archify/assets/template.html`、`html-plan/runtime/htmlplan.css` の変数名を読み直して CSS を直す。
+
+完了条件:
+- 自分で書く HTML: 地が `paper`、文字が `ink`、強調色が `shu`、書体が IBM Plex Sans JP。README の「禁止」に当たる装飾が 0 件で、「仕上げの検査」を満たす
+- 第三者スキルの出力: 地・文字・強調色・書体の 4 つだけが上と同じ。レイアウトと状態を表す色は、スキルのままでよい
