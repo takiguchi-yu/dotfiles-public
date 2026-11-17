@@ -1,4 +1,4 @@
-/* Sumi Shu: html-plan の色と書体だけを寄せる。plan.html の <link rel="stylesheet" href="htmlplan.css"> より後ろに入れる */
+/* Sumi Shu: html-plan の幅・色・書体を寄せる。pack 前の plan.html の <link rel="stylesheet" href="htmlplan.css"> より後ろに入れる（pack し直しても残る） */
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap");
 :root:root {
   --paper: #ffffff; --card: #ffffff; --sunk: #f3f3f1;
@@ -21,3 +21,7 @@
   --ink: #ededea; --ink-2: #c2c2bd; --ink-3: #93938d; --line: #3a3a38; --line-2: #2a2a28;
   --accent: #ff7759; --accent-soft: #3b1d16;
 }
+
+/* 全幅。--wide は min(var(--wide), 100vw - 40px) の中で使われるので、長さで上書きする */
+:root body { --col: none; --wide: 100vw; }
+:root body main p, :root body .dek { max-width: 45em; }

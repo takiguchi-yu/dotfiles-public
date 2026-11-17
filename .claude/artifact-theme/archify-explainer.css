@@ -1,4 +1,4 @@
-/* Sumi Shu: archify explainer の色と書体だけを寄せる。reader.css より後ろの <style> に入れる */
+/* Sumi Shu: archify explainer の幅・色・書体を寄せる。最後の finalize が通った後の HTML で、reader.css より後ろの <style> に入れる */
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap");
 @media screen {
   :root:root:root:root {
@@ -31,3 +31,7 @@
     --badge: #ededea; --badge-ink: #141414;
   }
 }
+
+/* 全幅。1100px 以下は reader.css の狭い画面用の幅（max-width:1100px と 760px）を残す */
+@media (min-width: 1101px) { .shell { width: calc(100% - 64px); } }
+.panel-body p { max-width: 45em; }
